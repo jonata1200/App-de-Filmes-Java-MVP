@@ -29,9 +29,11 @@ public class ActivityPrincipalPresenter implements ActivityPrincipalContrato.Pre
         call.enqueue(new Callback<List<Filme>>() {
             @Override
             public void onResponse(@NonNull Call<List<Filme>> call, @NonNull Response<List<Filme>> response) {
+
                 if (response.code() != 200){
-                    return;
+                    view.showError("Lista Vazia!");
                 }
+
                 List<Filme> filmes = response.body();
 
                 assert filmes != null;
@@ -40,7 +42,7 @@ public class ActivityPrincipalPresenter implements ActivityPrincipalContrato.Pre
 
             @Override
             public void onFailure(@NonNull Call<List<Filme>> call, @NonNull Throwable t) {
-                view.showError();
+                view.showError("Não foi possível carregar a lista");
             }
         });
     }

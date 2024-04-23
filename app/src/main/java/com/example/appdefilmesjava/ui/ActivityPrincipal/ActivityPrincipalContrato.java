@@ -8,7 +8,7 @@ public interface ActivityPrincipalContrato {
 
     interface View{
         void showFilmes(List<Filme> filmes);
-        void showError();
+        void showError(String mensagem);
     }
 
     interface Presenter{

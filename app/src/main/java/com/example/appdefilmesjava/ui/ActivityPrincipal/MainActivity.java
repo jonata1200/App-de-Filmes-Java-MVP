@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ActivityPrincipal
     }
 
     @Override
-    public void showError() {
-        Toast.makeText(this, "Erro no Servidor!", Toast.LENGTH_SHORT).show();
+    public void showError(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
 }
