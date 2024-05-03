@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.appdefilmesjava.R;
 import com.example.appdefilmesjava.databinding.ActivityDetalhesFilmeBinding;
 import com.example.appdefilmesjava.ui.Video.Video;
@@ -16,10 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class DetalhesFilme extends AppCompatActivity implements DetalheFilme.View {
+public class DetalhesFilme extends AppCompatActivity {
 
     private ActivityDetalhesFilmeBinding binding;
-    private DetalhesFilmePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class DetalhesFilme extends AppCompatActivity implements DetalheFilme.Vie
             return insets;
         });
 
-        presenter = new DetalhesFilmePresenter(this);
 
         String capa = getIntent().getExtras().getString("capa");
         String titulo = getIntent().getExtras().getString("titulo");
@@ -41,7 +40,10 @@ public class DetalhesFilme extends AppCompatActivity implements DetalheFilme.Vie
         String elenco = getIntent().getExtras().getString("elenco");
         String video = getIntent().getExtras().getString("video");
 
-        presenter.loadFilmeDetails(capa, titulo, descricao, elenco, video);
+        Glide.with(this).load(capa).into(binding.DtCapaFilme);
+        binding.DtNomeFilme.setText(titulo);
+        binding.DtDetalheFilme.setText(descricao);
+        binding.DtElencoFilme.setText(elenco);
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,32 +60,6 @@ public class DetalhesFilme extends AppCompatActivity implements DetalheFilme.Vie
                 startActivity(intent);
             }
         });
-    }
-
-
-    @Override
-    public DetalhesFilme getContext() {
-        return this;
-    }
-
-    @Override
-    public ImageView getDtCapaFilme() {
-        return binding.DtCapaFilme;
-    }
-
-    @Override
-    public TextView getDtNomeFilme() {
-        return binding.DtNomeFilme;
-    }
-
-    @Override
-    public TextView getDtDetalheFilme() {
-        return binding.DtDetalheFilme;
-    }
-
-    @Override
-    public TextView getDtElencoFilme() {
-        return binding.DtElencoFilme;
     }
 
 }
