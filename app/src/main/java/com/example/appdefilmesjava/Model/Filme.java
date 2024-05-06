@@ -8,6 +8,12 @@ public class Filme {
     private String elenco;
     private String video;
 
+    public Filme(String titulo, String capa, String descricao, String elenco) {
+        this.titulo = titulo;
+        this.capa = capa;
+        this.descricao = descricao;
+        this.elenco = elenco;
+    }
 
     public String getTitulo() {
         return titulo;
